@@ -1,15 +1,15 @@
-package com.applaudostudios.nfl12bars;
+package com.applaudostudios.nfl12bars.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.applaudostudios.nfl12bars.R;
 import com.applaudostudios.nfl12bars.models.BarVenue;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +23,8 @@ public class DetailFragment extends Fragment {
     public static DetailFragment newInstance(BarVenue item) {
         DetailFragment detailFragment = new DetailFragment();
         Bundle args = new Bundle();
-        args.putSerializable("item", item);
+
+        args.putParcelable("item", item);
         detailFragment.setArguments(args);
         return detailFragment;
     }
@@ -31,12 +32,13 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        item = (BarVenue) getArguments().getSerializable("item");
+        item = getArguments().getParcelable("item");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate view
         View view = inflater.inflate(R.layout.fragment_detail,
                 container, false);
@@ -63,7 +65,8 @@ public class DetailFragment extends Fragment {
                     .placeholder(R.drawable.logoapplaudo)
                     .error(R.drawable.logoapplaudo)
                     .into(mImgPhoto);
-        }catch (Exception e){
+        }catch (Exception e)
+        {
 
         }
         mTxtSchedule = (TextView)view.findViewById(R.id.txtSchedule);

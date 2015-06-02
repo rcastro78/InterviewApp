@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
+        jar="/Users/RafaelCastro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.3.2/d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27/picasso-2.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-db2268a35e3ea4393346da749cf861fb08ba3f60.jar" />
+    </item>
+    <item
         jar="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
         <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-18eaa14eaf8db5f74b5746aa0584888c010c3259.jar" />
-    </item>
-    <item
-        jar="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/classes-7c5ff45c3ab8414579dcc31c9dba4f1e02d581a6.jar" />
     </item>
     <item
         jar="/Users/RafaelCastro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
@@ -23,6 +23,20 @@
         <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-4581d2b8c48e5140ca25a10a81d8170ad91c62fa.jar" />
     </item>
     <item
+        jar="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/libs/volley.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/volley-0f985809b4f435e81486b14ff2a8c488a3d6b353.jar" />
+    </item>
+    <item
+        jar="/Users/RafaelCastro/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/gson-2.3.1-4d96f9bfd7c1e31e7d7dd54bec12dcba73c89575.jar" />
+    </item>
+    <item
         jar="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -30,11 +44,11 @@
         <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/classes-dc293e307a47af904410520ac2cdc9d035f236bf.jar" />
     </item>
     <item
-        jar="/Users/RafaelCastro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.3.2/d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27/picasso-2.3.2.jar"
+        jar="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
-        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-db2268a35e3ea4393346da749cf861fb08ba3f60.jar" />
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/RafaelCastro/Desktop/Proyectos Android/NFL12Bars/app/build/intermediates/pre-dexed/debug/classes-7c5ff45c3ab8414579dcc31c9dba4f1e02d581a6.jar" />
     </item>
 
 </items>

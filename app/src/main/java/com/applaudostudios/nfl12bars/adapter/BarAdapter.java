@@ -20,7 +20,7 @@ public class BarAdapter extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<BarVenue> items;
-    BarVenue bar;
+    protected BarVenue bar;
 
     String TAG="BarAdapter";
     public BarAdapter(Activity activity, ArrayList<BarVenue> items) {
@@ -30,7 +30,7 @@ public class BarAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return items.size();
+         return items.size();
     }
 
     @Override
@@ -59,9 +59,7 @@ public class BarAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.mTxtBar = (TextView) convertView.findViewById(R.id.txtBarName);
             holder.mTxtAddress = (TextView) convertView.findViewById(R.id.txtBarAddress);
-
             convertView.setTag(holder);
-
         }else {
             holder = (ViewHolder) convertView.getTag();
         }

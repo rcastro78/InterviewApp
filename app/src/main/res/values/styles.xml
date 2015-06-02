@@ -8,6 +8,7 @@
     <style name="MyActionBar"
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/nfl</item>
+        <item name="android:icon">@mipmap/nfl_01</item>
     </style>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.applaudostudios.nfl12bars;
+package com.applaudostudios.nfl12bars.activities;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
@@ -6,43 +6,60 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.applaudostudios.nfl12bars.fragments.BarsFragment;
+import com.applaudostudios.nfl12bars.fragments.DetailFragment;
+import com.applaudostudios.nfl12bars.R;
 import com.applaudostudios.nfl12bars.models.BarVenue;
 
 
 public class MainActivity extends ActionBarActivity implements
         BarsFragment.OnListItemSelectedListener {
-    View mCustomView;
-    ActionBar mActionBar;
-    ImageView mImgShare;
+
     BarVenue bar;
     private boolean has2Panes = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mActionBar = getSupportActionBar();
         determinePaneLayout();
-        showCustomActionBar();
+    }
 
-        if (has2Panes==true)
-        {
-            mImgShare = (ImageView)mCustomView.findViewById(R.id.imgShare);
-            mImgShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    String share = bar.getName()+"\n"+bar.getAddress();
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "NFL Bar Venues");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, share);
-                    startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                }
-            });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        if (has2Panes==true){
+            getMenuInflater().inflate(R.menu.menu_detail, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.menu_main, menu);
         }
 
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if(item.getItemId() == R.id.action_share) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String share = bar.getName()+"\n"+bar.getAddress();
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "NFL Bar Venues");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, share);
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        }
+        else{
+            // if a the new item is clicked show "Toast" message.
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void determinePaneLayout() {
@@ -71,19 +88,5 @@ public class MainActivity extends ActionBarActivity implements
     }
 
 
-    public void showCustomActionBar()
-    {
 
-        mActionBar.setDisplayShowHomeEnabled(false);
-        mActionBar.setDisplayShowTitleEnabled(false);
-        LayoutInflater mInflater = LayoutInflater.from(this);
-        if (has2Panes==false) {
-            mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
-        }else{
-            mCustomView = mInflater.inflate(R.layout.custom_actionbar_large, null);
-        }
-            mActionBar.setCustomView(mCustomView);
-        mActionBar.setDisplayShowCustomEnabled(true);
-
-    }
 }

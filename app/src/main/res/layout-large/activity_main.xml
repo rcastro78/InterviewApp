@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragmentItemsList"
-        android:name="com.applaudostudios.nfl12bars.BarsFragment"
+        android:name="com.applaudostudios.nfl12bars.fragments.BarsFragment"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
