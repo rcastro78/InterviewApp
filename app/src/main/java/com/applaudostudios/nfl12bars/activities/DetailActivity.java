@@ -20,19 +20,23 @@ import com.applaudostudios.nfl12bars.models.BarVenue;
 public class DetailActivity extends ActionBarActivity {
     DetailFragment mDetailFragment;
 
-    View mCustomView;
-    ActionBar mActionBar;
-    ImageView mImgShare,mImgHome;
     BarVenue barVenue;
+    final static String ITEM="item";
+    final static String TITLE="Details";
+    final static String SUBJECT="NFL Bar Venues";
+    final static String SHARE_TEXT="Share via";
+    final static String SHARE_TYPE="text/plain";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        barVenue = getIntent().getParcelableExtra("item");
+        barVenue = getIntent().getParcelableExtra(ITEM);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
 
         if (savedInstanceState==null) {
             Bundle arguments = new Bundle();
-            arguments.putParcelable("item", getIntent().getParcelableExtra("item"));
+            arguments.putParcelable(ITEM, getIntent().getParcelableExtra(ITEM));
 
             mDetailFragment = new DetailFragment();
             mDetailFragment.setArguments(arguments);
@@ -55,14 +59,17 @@ public class DetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home){
+            onBackPressed();
+        }
 
         if(item.getItemId() == R.id.action_share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
+            sharingIntent.setType(SHARE_TYPE);
             String share = barVenue.getName()+"\n"+barVenue.getAddress();
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "NFL Bar Venues");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, SUBJECT);
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, share);
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            startActivity(Intent.createChooser(sharingIntent,SHARE_TEXT));
         }
         else{
             // if a the new item is clicked show "Toast" message.

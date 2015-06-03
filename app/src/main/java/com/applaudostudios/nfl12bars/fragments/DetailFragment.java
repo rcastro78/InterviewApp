@@ -20,11 +20,15 @@ public class DetailFragment extends Fragment {
     private BarVenue item;
     TextView mTxtBarAddress,mTxtBarName,mTxtSchedule;
     ImageView mImgPhoto;
+    final static String FONT_PATH="fonts/";
+    final static String FONT_TITLE="gt-walsheim-medium-web.ttf";
+    final static String FONT_ITEM="gt-walsheim-light-web.ttf";
+    final static String ITEM="item";
     public static DetailFragment newInstance(BarVenue item) {
         DetailFragment detailFragment = new DetailFragment();
         Bundle args = new Bundle();
 
-        args.putParcelable("item", item);
+        args.putParcelable(ITEM, item);
         detailFragment.setArguments(args);
         return detailFragment;
     }
@@ -32,7 +36,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        item = getArguments().getParcelable("item");
+        item = getArguments().getParcelable(ITEM);
     }
 
     @Override
@@ -46,11 +50,11 @@ public class DetailFragment extends Fragment {
 
         Typeface tfBarName =
                 Typeface.createFromAsset(getActivity().getAssets(),
-                        "fonts/gt-walsheim-medium-web.ttf");
+                       FONT_PATH+FONT_TITLE);
 
         Typeface tfBarAddress =
                 Typeface.createFromAsset(getActivity().getAssets(),
-                        "fonts/gt-walsheim-light-web.ttf");
+                        FONT_PATH+FONT_ITEM);
 
         mTxtBarAddress = (TextView)view.findViewById(R.id.txtBarAddress);
         mTxtBarAddress.setTypeface(tfBarAddress);

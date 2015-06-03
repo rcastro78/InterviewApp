@@ -21,7 +21,9 @@ public class BarAdapter extends BaseAdapter {
     protected Activity activity;
     protected ArrayList<BarVenue> items;
     protected BarVenue bar;
-
+    final static String FONT_PATH="fonts/";
+    final static String FONT_TITLE="gt-walsheim-medium-web.ttf";
+    final static String FONT_ITEM="gt-walsheim-light-web.ttf";
     String TAG="BarAdapter";
     public BarAdapter(Activity activity, ArrayList<BarVenue> items) {
         super();
@@ -35,6 +37,7 @@ public class BarAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+
         return items.get(position);
     }
 
@@ -47,13 +50,12 @@ public class BarAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Typeface tfBarName =
-                Typeface.createFromAsset(activity.getAssets(),"fonts/gt-walsheim-medium-web.ttf");
+                Typeface.createFromAsset(activity.getAssets(),FONT_PATH+FONT_TITLE);
         Typeface tfBarAddress =
-                Typeface.createFromAsset(activity.getAssets(),"fonts/gt-walsheim-light-web.ttf");
+                Typeface.createFromAsset(activity.getAssets(),FONT_PATH+FONT_ITEM);
         bar = items.get(position);
         ViewHolder holder = null;
         if (convertView == null) {
-            holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_bar, null);
             holder = new ViewHolder();

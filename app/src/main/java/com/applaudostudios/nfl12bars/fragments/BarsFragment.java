@@ -2,7 +2,6 @@ package com.applaudostudios.nfl12bars.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,21 +21,12 @@ import com.applaudostudios.nfl12bars.R;
 import com.applaudostudios.nfl12bars.adapter.BarAdapter;
 import com.applaudostudios.nfl12bars.models.BarVenue;
 import com.applaudostudios.nfl12bars.utils.DateUtils;
-import com.applaudostudios.nfl12bars.utils.JSONParser;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
 
 /**
  * Created by RafaelCastro on 28/5/15.
@@ -96,20 +86,33 @@ public class BarsFragment extends Fragment{
                 listener.onItemSelected(bar);
             }
         });
-        progressDialog = new ProgressDialog(getActivity());
-
+        showProgress();
         getResults();
 
         return view;
     }
+
+    private void hideProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    private void showProgress(){
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading bars...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
 
     public void getResults() {
         JsonArrayRequest req = new JsonArrayRequest(URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-
+                        hideProgress();
                         try {
                             for (int i = 0; i < response.length(); i++) {
 
@@ -139,7 +142,7 @@ public class BarsFragment extends Fragment{
                                 }
 
                                 String imageUrl = jsonObject.getString(IMAGE_URL);
-                                items.add(new BarVenue(id,name,address,"","","",imageUrl,schedules));
+                                items.add(new BarVenue(id,name,address,imageUrl,schedules));
                             }
 
                             adapter = new BarAdapter(getActivity(), items);
@@ -161,6 +164,7 @@ public class BarsFragment extends Fragment{
             public void onErrorResponse(VolleyError error)
             {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                hideProgress();
                 Toast.makeText(getActivity().getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -169,75 +173,6 @@ public class BarsFragment extends Fragment{
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req);
     }
-
-
-    /*
-
-    public void getResults2()
-    {
-        progressDialog.setMessage("Loading bars...");
-        progressDialog.show();
-
-        JsonArrayRequest req = new JsonArrayRequest(URL,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-
-                        Gson gson = new Gson();
-                        Type collectionType = new TypeToken<List<BarVenue>>() {
-                        }.getType();
-
-                        ArrayList<BarVenue> bars = gson.fromJson(response.toString(),collectionType);
-                        for (int j=0; j<bars.size(); j++)
-                        {
-
-
-                            int id = bars.get(j).getId();
-                            String name = bars.get(j).getName();
-                            String address =bars.get(j).getAddress()+" "+
-                                    bars.get(j).getCity()+", "+bars.get(j).getState() +
-                                    " "+bars.get(j).getZip();
-                                String schedule = gson.fromJson(bars.get(j).getSchedules(),collectionType);
-                                String imageUrl = bars.get(j).getImageUrl();
-                            items.add(new BarVenue(id,name,address,"","","", imageUrl,schedule));
-                        }
-                        try {
-
-
-                            adapter = new BarAdapter(getActivity(), items);
-                            mLvBars.setAdapter(adapter);
-
-                        }catch (Exception e)
-                        {
-                            e.printStackTrace();
-                            Toast.makeText(getActivity().getApplicationContext(),
-                                    "Error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-
-
-                    }
-                }, new Response.ErrorListener()
-        {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity().getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        progressDialog.dismiss();
-        AppController.getInstance().addToRequestQueue(req);
-    }
-
-*/
-
-
-
-
 
 
 }

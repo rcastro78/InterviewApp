@@ -20,7 +20,10 @@ import com.applaudostudios.nfl12bars.models.BarVenue;
 
 public class MainActivity extends ActionBarActivity implements
         BarsFragment.OnListItemSelectedListener {
-
+    final static String SUBJECT="NFL Bar Venues";
+    final static String SHARE_TEXT="Share via";
+    final static String SHARE_TYPE="text/plain";
+    final static String ITEM="item";
     BarVenue bar;
     private boolean has2Panes = false;
     @Override
@@ -49,11 +52,11 @@ public class MainActivity extends ActionBarActivity implements
 
         if(item.getItemId() == R.id.action_share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
+            sharingIntent.setType(SHARE_TYPE);
             String share = bar.getName()+"\n"+bar.getAddress();
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "NFL Bar Venues");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, SUBJECT);
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, share);
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            startActivity(Intent.createChooser(sharingIntent, SHARE_TEXT));
         }
         else{
             // if a the new item is clicked show "Toast" message.
@@ -82,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements
             ft.commit();
         }else {
             Intent i = new Intent(this, DetailActivity.class);
-            i.putExtra("item", item);
+            i.putExtra(ITEM, item);
             startActivity(i);
         }
     }
