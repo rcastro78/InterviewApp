@@ -17,18 +17,18 @@ import com.squareup.picasso.Picasso;
  * Created by RafaelCastro on 28/5/15.
  */
 public class DetailFragment extends Fragment {
-    private BarVenue item;
+    private BarVenue mBarVenue;
     TextView mTxtBarAddress,mTxtBarName,mTxtSchedule;
     ImageView mImgPhoto;
     final static String FONT_PATH="fonts/";
     final static String FONT_TITLE="gt-walsheim-medium-web.ttf";
     final static String FONT_ITEM="gt-walsheim-light-web.ttf";
-    final static String ITEM="item";
+    final static String ARG_ITEM="item";
     public static DetailFragment newInstance(BarVenue item) {
         DetailFragment detailFragment = new DetailFragment();
         Bundle args = new Bundle();
 
-        args.putParcelable(ITEM, item);
+        args.putParcelable(ARG_ITEM, item);
         detailFragment.setArguments(args);
         return detailFragment;
     }
@@ -36,7 +36,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        item = getArguments().getParcelable(ITEM);
+        mBarVenue = getArguments().getParcelable(ARG_ITEM);
     }
 
     @Override
@@ -61,11 +61,11 @@ public class DetailFragment extends Fragment {
         mTxtBarName= (TextView)view.findViewById(R.id.txtBarName);
         mTxtBarName.setTypeface(tfBarName);
         mImgPhoto = (ImageView)view.findViewById(R.id.imgPhoto);
-        mTxtBarAddress.setText(item.getAddress());
-        mTxtBarName.setText(item.getName());
+        mTxtBarAddress.setText(mBarVenue.getAddress());
+        mTxtBarName.setText(mBarVenue.getName());
         try {
             Picasso.with(getActivity())
-                    .load(item.getImageUrl())
+                    .load(mBarVenue.getImageUrl())
                     .placeholder(R.drawable.logoapplaudo)
                     .error(R.drawable.logoapplaudo)
                     .into(mImgPhoto);
@@ -74,7 +74,7 @@ public class DetailFragment extends Fragment {
 
         }
         mTxtSchedule = (TextView)view.findViewById(R.id.txtSchedule);
-        mTxtSchedule.setText(item.getSchedules());
+        mTxtSchedule.setText(mBarVenue.getSchedules());
         mTxtSchedule.setTypeface(tfBarAddress);
 
 

@@ -52,7 +52,7 @@ public class BarsFragment extends Fragment{
     ArrayList<BarVenue> items = new ArrayList<>();
     ListView mLvBars;
     DateConversion dateUtils = new DateConversion();
-    private OnListItemSelectedListener listener;
+    private OnListItemSelectedListener mListener;
 
     public interface OnListItemSelectedListener {
         void onItemSelected(BarVenue item);
@@ -62,7 +62,7 @@ public class BarsFragment extends Fragment{
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof OnListItemSelectedListener) {
-            listener = (OnListItemSelectedListener) activity;
+            mListener = (OnListItemSelectedListener) activity;
         } else {
             throw new ClassCastException(
                     activity.toString()
@@ -84,7 +84,7 @@ public class BarsFragment extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object object = mLvBars.getItemAtPosition(position);
                 BarVenue bar = (BarVenue) object;
-                listener.onItemSelected(bar);
+                mListener.onItemSelected(bar);
             }
         });
         showProgress();

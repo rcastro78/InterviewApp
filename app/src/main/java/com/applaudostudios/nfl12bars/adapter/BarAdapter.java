@@ -18,27 +18,27 @@ import java.util.ArrayList;
  */
 public class BarAdapter extends BaseAdapter {
 
-    protected Activity activity;
-    protected ArrayList<BarVenue> items;
-    protected BarVenue bar;
+    protected Activity mActivity;
+    protected ArrayList<BarVenue> mBarVenueItems;
+    protected BarVenue mBarVenue;
     final static String FONT_PATH="fonts/";
     final static String FONT_TITLE="gt-walsheim-medium-web.ttf";
     final static String FONT_ITEM="gt-walsheim-light-web.ttf";
     String TAG="BarAdapter";
-    public BarAdapter(Activity activity, ArrayList<BarVenue> items) {
+    public BarAdapter(Activity activity, ArrayList<BarVenue> barVenueItems) {
         super();
-        this.activity = activity;
-        this.items = items;
+        this.mActivity = activity;
+        this.mBarVenueItems = barVenueItems;
     }
     @Override
     public int getCount() {
-         return items.size();
+         return mBarVenueItems.size();
     }
 
     @Override
     public Object getItem(int position) {
 
-        return items.get(position);
+        return mBarVenueItems.get(position);
     }
 
     @Override
@@ -50,13 +50,13 @@ public class BarAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Typeface tfBarName =
-                Typeface.createFromAsset(activity.getAssets(),FONT_PATH+FONT_TITLE);
+                Typeface.createFromAsset(mActivity.getAssets(),FONT_PATH+FONT_TITLE);
         Typeface tfBarAddress =
-                Typeface.createFromAsset(activity.getAssets(),FONT_PATH+FONT_ITEM);
-        bar = items.get(position);
+                Typeface.createFromAsset(mActivity.getAssets(),FONT_PATH+FONT_ITEM);
+        mBarVenue = mBarVenueItems.get(position);
         ViewHolder holder = null;
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_bar, null);
             holder = new ViewHolder();
             holder.mTxtBar = (TextView) convertView.findViewById(R.id.txtBarName);
@@ -67,9 +67,9 @@ public class BarAdapter extends BaseAdapter {
         }
 
 
-        holder.mTxtBar.setText(bar.getName());
+        holder.mTxtBar.setText(mBarVenue.getName());
         holder.mTxtBar.setTypeface(tfBarName);
-        holder.mTxtAddress.setText(bar.getAddress());
+        holder.mTxtAddress.setText(mBarVenue.getAddress());
         holder.mTxtAddress.setTypeface(tfBarAddress);
 
         return convertView;
