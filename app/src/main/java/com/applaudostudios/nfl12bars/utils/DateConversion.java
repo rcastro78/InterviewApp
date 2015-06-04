@@ -7,7 +7,7 @@ import java.util.TimeZone;
 /**
  * Created by RafaelCastro on 1/6/15.
  */
-public class DateUtils {
+public class DateConversion {
     public String setStartTime(String dt) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
         SimpleDateFormat df_output = new SimpleDateFormat("EEEE M/dd h:mm a");

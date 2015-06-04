@@ -20,7 +20,7 @@ import com.applaudostudios.nfl12bars.AppController;
 import com.applaudostudios.nfl12bars.R;
 import com.applaudostudios.nfl12bars.adapter.BarAdapter;
 import com.applaudostudios.nfl12bars.models.BarVenue;
-import com.applaudostudios.nfl12bars.utils.DateUtils;
+import com.applaudostudios.nfl12bars.utils.DateConversion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,11 +46,12 @@ public class BarsFragment extends Fragment{
     final static String START_DATE="start_date";
     final static String END_DATE="end_date";
     final static String IMAGE_URL="image_url";
+
     ProgressDialog progressDialog;
     BarAdapter adapter;
     ArrayList<BarVenue> items = new ArrayList<>();
     ListView mLvBars;
-    DateUtils dateUtils = new DateUtils();
+    DateConversion dateUtils = new DateConversion();
     private OnListItemSelectedListener listener;
 
     public interface OnListItemSelectedListener {
@@ -173,6 +174,9 @@ public class BarsFragment extends Fragment{
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req);
     }
+
+
+
 
 
 }
